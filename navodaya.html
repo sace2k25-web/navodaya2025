@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NAVODAYA TechFest 2025 – VPM's MPCOE</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+/* =====================
+   Modal Register Button
+   ===================== */
+#m-register {
+  display: inline-block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px 22px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #2563eb, #0ea5e9);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.3s;
+}
+#m-register:hover {
+  background: linear-gradient(90deg, #1d4ed8, #0284c7);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
+}
+#m-register:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 12px rgba(37, 99, 235, 0.35);
+}
+
+/* =====================
+   Theme / Layout
+   ===================== */
+:root{
+  --bg:#0a0f1a;
+  --bg-soft:#0f1726;
+  --ink:#e6f0ff;
+  --muted:#9db4d1;
+  --brand:#0b0e13;
+  --brand-2:#0f0f0f;
+  --ring: rgba(59,130,246,.45);
+  --radius:18px;
+  --shadow:0 10px 30px rgba(3,10,30,.45);
+}
+#about {
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  padding: 40px 0;
+}
+#about p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 10px 0;
+  color: var(--muted);
+}
+#about a {
+  color: #3b82f6;
+  font-weight: 600;
+  text-decoration: none;
+}
+#about a:hover { text-decoration: underline; }
+#faq {
+  background: rgba(255,255,255,.02);
+  padding: 40px 0;
+}
+#faq ul {
+  margin: 16px 0;
+  padding-left: 20px;
+}
+#faq li {
+  margin: 8px 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+#faq .chip {
+  background: rgba(59,130,246,.15);
+  border: 1px solid rgba(59,130,246,.35);
+  font-size: 13px;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 800px at 15% 10%, #0e1b30 0%, var(--bg) 60%),
+                 radial-gradient(1200px 800px at 85% 20%, #0b162a 0%, transparent 60%),
+                 var(--bg);
+     color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Arial;}
+.container{max-width:1200px;margin:auto;padding:24px}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(10,15,26,.8);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:36px;height:36px;border-radius:50%;overflow:hidden;box-shadow:0 0 24px rgba(59,130,246,.45)}
+.logo img{width:100%;height:100%;object-fit:contain}
+.brand h1{font-size:18px;font-weight:800;margin:0}
+.btn{padding:8px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:var(--ink);cursor:pointer}
+.btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand-2));border:0}
+.hero{padding:40px 0;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.hero img{max-width:520px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.title{font-size:clamp(28px,4vw,48px);font-weight:800;margin:0 0 12px}
+.subtitle{color:var(--muted);margin:0 0 18px}
+.pill{padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-size:14px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:22px}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.card h3{margin:0;font-size:18px}
+.card .desc{color:var(--muted);font-size:14px;margin:8px 0}
+.meta-row{display:flex;gap:10px;flex-wrap:wrap}
+.meta-item{flex:1;min-width:120px;background:rgba(255,255,255,.03);padding:8px;border-radius:12px;border:1px dashed rgba(255,255,255,.12)}
+.meta-item label{font-size:11px;color:#a9c1df}
+
+dialog {
+  width: min(720px, 95%);
+  background: var(--bg-soft);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 20px;
+  padding: 0;
+  color: var(--ink);
+  font-family: Inter, system-ui, sans-serif;
+}
+dialog::backdrop {
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(4px);
+}
+.modal-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 22px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.modal-head strong { font-size:20px;font-weight:700; }
+.modal-body {
+  padding:22px;
+  line-height:1.6;
+  font-size:15px;
+}
+.modal-body label {
+  font-size:13px;
+  font-weight:600;
+  color:#9db4d1;
+  display:block;
+  margin-bottom:4px;
+}
+.kv {
+  background:rgba(255,255,255,.03);
+  padding:12px;
+  border-radius:12px;
+  border:1px dashed rgba(255,255,255,.12);
+}
+.kvs {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:18px;
+}
+.rules h4 {
+  margin:16px 0 8px;
+  font-size:16px;
+  font-weight:600;
+}
+.rules ul { margin:0; padding-left:20px; }
+.rules li { margin:6px 0; font-size:14px; }
+
+footer{margin-top:40px;padding:20px 0;border-top:1px solid rgba(255,255,255,.1);text-align:center;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo"><img src="navodaya-removebg-preview.png" alt="NAVODAYA Logo"></div>
+        <h1>NAVODAYA TechFest ’25</h1>
+      </div>
+      <nav>
+        <a href="#events" class="btn">Events</a>
+        <a href="#about" class="btn">About</a>
+        <a href="#faq" class="btn">FAQ</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScoeY0HpNbOWHquFguGpCvYZ-XpwTi6c7R1mGxKAgVjdcpctg/viewform?usp=dialog" target="_blank" class="btn primary">Register</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero container">
+    <div>
+      <p class="pill">25–26 Sept 2025 • Velneshwar, Guhagar</p>
+      <h2 class="title">Where ideas ignite and teams conquer.</h2>
+      <p class="subtitle">17 competitions across coding, robotics, civil tech, creativity, and esports. Total prize pool <strong>₹1,50,000</strong>.</p>
+      <a href="#events" class="btn primary">Browse All Events</a>
+    </div>
+    <img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?q=80&w=1000&auto=format&fit=crop" alt="Tech Grid">
+  </section>
+
+  <section id="events" class="container">
+    <h3>Events (17)</h3>
+    <div id="grid" class="grid"></div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <h3 class="section-title">FAQs & Rules</h3>
+      <ul class="muted">
+        <li>✔ Valid student ID card is mandatory during registration and event participation.</li>
+        <li>✔ Registration closes 22 Sept 2025 (or earlier if slots fill).</li>
+        <li>✔ Entry fee is per team/participant as mentioned under each event.</li>
+        <li>✔ Certificates will be awarded to all participants and winners.</li>
+        <li>✔ Team sizes must be as per event rules (see details in each modal).</li>
+        <li>✔ Judges’ decisions are final and binding.</li>
+        <li>✔ Report to the event desk at least 15 minutes before start time.</li>
+        <li>✔ Plagiarism, malpractice, or unsportsmanlike behavior leads to disqualification.</li>
+        <li>✔ On-spot registrations are subject to availability of slots.</li>
+      </ul>
+      <div class="meta">
+        <span class="chip">Helpdesk at Main Foyer</span>
+        <span class="chip">Event Heads: Shantanu Gurav & Abhishek Pawar</span>
+        <span class="chip">Contact: +91-8329036221 || +91-7887781220</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h3 class="section-title">About NAVODAYA</h3>
+      <p class="muted"><strong>NAVODAYA</strong> is the annual state-level technical festival of 
+        <strong>VPM’s Maharshi Parshuram College of Engineering (MPCOE), Velneshwar</strong>, 
+        located in the scenic Konkan region of Maharashtra. The fest brings together 
+        students across the state for competitions in coding, robotics, civil engineering, 
+        design, and gaming. </p>
+      <p class="muted">MPCOE was established to provide quality education in engineering and technology. 
+        The institute is run by Vidya Prasarak Mandal, and is affiliated to Mumbai University, Accrediated with B+ Grade By NAAC. 
+        NAVODAYA is organized by student bodies SACE & CESA with the support of faculty and management.</p>
+      <div class="meta" style="margin-top:8px">
+        <span class="pill">Dates: 25–26 Sept 2025</span>
+        <span class="pill">Prize pool: ₹1,50,000+</span>
+        <span class="pill">Venue: Velneshwar, Guhagar</span>
+      </div>
+      <p style="margin-top:12px;">
+        📍 Visit us at <a href="https://www.vpmmpcoe.org" target="_blank">www.vpmmpcoe.org</a><br>
+        📧 For queries: <a href="mailto:sace2k25@gmail.com">sace2k25@gmail.com</a><br>
+        ☎ College Office: +91-22 2542 6270
+      </p>
+    </div>
+  </section>
+
+  <dialog id="modal">
+    <div class="modal-head">
+      <strong id="m-title">Event</strong>
+      <button class="btn" id="m-close">Close</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+        <div class="kv"><label>Category</label><div id="m-cat"></div></div>
+        <div class="kv"><label>Total Prize</label><div id="m-prize"></div></div>
+        <div class="kv"><label>Entry Fee</label><div id="m-fee"></div></div>
+        <div class="kv"><label>Team / Solo</label><div id="m-team"></div></div>
+      </div>
+      <div class="rules">
+        <h4>About</h4>
+        <p id="m-about"></p>
+        <h4>Prize Breakdown</h4>
+        <ul id="m-break"></ul>
+        <h4>Rules</h4>
+        <ul id="m-rules"></ul>
+      </div>
+    </div>
+    <p><a id="m-register" target="_blank" class="btn primary">Register Now</a></p>
+  </dialog>
+
+  <footer>
+    <p>© 2025 VPM’s MPCOE — NAVODAYA TechFest</p>
+  </footer>
+
+  <script>
+    const EVENTS = [
+      {name:"HackaTron",category:"CSE/IT",prize:{first:6000,second:4000,third:2000,total:12000},entryFee:"300",team:"Team size: 2–4 (at least 1 female participant compulsory)",about:"Rapid hackathon.",rules:["Eligibility: Only Diploma students can participate. Degree students are not allowed.","Team size: 2–4 (at least 1 female participant compulsory).","Duration: 18 hours continuous hackathon.","Problem statement will be given at the start of the event.","3 rounds in total.","Round 1: Initial judging by students based on idea and basic UI demo.","Round 2: Q&A session + PPT presentation (evaluated by students).","Round 3: Final evaluation by faculty members.","If most teams are disqualified in Round 2, Round 3 will not be conducted.","Deliverables: Roadmap design of UI, PPT presentation, and working code.","Code must be deployed on free platforms like Vercel/Netlify and pushed to a GitHub repository.","AI tools (e.g., ChatGPT, Copilot) are allowed but must be declared.","Judging criteria: innovation, feasibility, clarity, teamwork, and deployment quality.","Plagiarism or use of pre-built solutions will lead to disqualification.","Judges’ decision will be final and binding."]},
+      {name:"HackThron 2.0",category:"CSE/IT",prize:{first:5000,second:3000,third:2000,total:10000},entryFee:"300",team:"Team size: 2–4 (at least 1 female participant compulsory)",about:"Second sprint hackathon.",rules:["Same structure as HackaTron","New tracks provided","Fair play mandatory"]},
+      {name:"Code Smash",category:"CSE/IT",prize:{ first:5000, second:3000, third:2000, total:10000 },entryFee:"200",team:"Solo",about:"Algorithmic coding challenge with multiple rounds.",rules:["Solo participation only.","3 rounds in total.","Round 1: Fill and find errors.","Round 2: Pattern coding.","Round 3: Blind coding with problem statement.","Event duration: 1.5 hours (all rounds combined).","Allowed languages: C, C++, Java, Python.","Ranking based on accuracy first, then speed and efficiency.","Participants must submit solutions before the timer ends; late submissions will not be evaluated.","Any kind of cheating, plagiarism, or use of unauthorized devices will result in immediate disqualification.","Judges’ decision will be final and binding."]},
+      {name:"Tech Hustle",category:"CSE/IT",prize:{first:5000,second:3000,third:2000,total:10000},entryFee:"200",team:"Solo",about:"Quiz + pitch + debugging.",rules:["Eligibility: Open to all undergraduate and postgraduate students.","Team composition: Maximum of 2 members per team, solo participation also allowed.","Registration must be done before the deadline through Google Form or on-spot; Fee: ₹100.","3 rounds in total.","Round 1: Paper-based quiz (general + technical knowledge).","Round 2: PPT-based quiz (15 questions, 1 minute each).","Round 3: Buzzer round (general + technical knowledge with negative marking).","Time limit: 30 minutes per round.","All answers must be original and relevant; use of unfair means will lead to disqualification.","Teams must follow the event theme and maintain discipline.","Judging criteria: Round 1 Accuracy & Speed (30%), Round 2 Problem-Solving & Innovation (40%), Round 3 Final Hustle Performance (30%).","Teams must report at least 15 minutes before the event.","Exceeding time limits will result in negative marking.","Offensive or inappropriate behavior will result in disqualification.","Judges’/organizers’ decision will be final and binding.","Exciting prizes and certificates for winners; participation certificates for all registered participants."]},
+      {name:"Paper Presentation",category:"CSE/IT",prize:{first:2500,second:1200,third:1000,total:4700},entryFee:"200",team:"1–2",about:"Original research paper.",rules:["Eligibility: Open to undergraduate, postgraduate, or research scholars; papers must be original and not previously presented or published.","Team composition: Maximum 2 authors per paper; both can present but one certificate per author.","Submission: IEEE format, 6–8 pages including references; Times New Roman, 12pt, 1.5 spacing; submit via official email/portal before deadline.","Presentation: 8 minutes presentation + 2 minutes Q&A, max 15 slides (PPT/PDF), English only; submit via pen drive/email beforehand.","Content guidelines: Topic must be relevant to given themes (provided in Google Form); plagiarism must not exceed 15% with proper citations.","Judging criteria: Content Quality (30%), Presentation Skills (25%), Technical Knowledge (25%), Q&A Response (20%).","General rules: Report at least 15 minutes before slot; exceeding time leads to negative marks; offensive/inappropriate content leads to disqualification; judges’ decision is final.","Awards: Prizes and certificates for winners; participation certificates for all eligible teams."]},
+      {name:"App Wibe",category:"CSE/IT",prize:{first:5000,second:3000,third:2000,total:10000},entryFee:"300",team:"1–2",about:"UI/UX + app prototype.",rules:["Eligibility: Open to undergraduate, diploma, postgraduate, or research scholars; projects may be final-year projects or new idea-based apps from any branch.","Apps must be original and not previously submitted or published in other competitions.","Team composition: Maximum of 3 members per team.","Submission format: APK file or project build along with documentation (2–3 page abstract describing features, stack, and innovation).","Submission method: Apps and documentation must be submitted via official email/portal before the deadline.","Presentation format: 8 minutes demo + 2 minutes Q&A, max 15 slides (PPT/PDF) with optional live demo.","Language of presentation: English (or as specified); ensure files are submitted beforehand via pen drive/email.","App content must align with the given theme/track; plagiarism must not exceed 15% and open-source resources must be cited properly.","Both Web and Android platforms are allowed; evaluation includes utility, functionality, and efficiency of the app.","Judging criteria: Innovation & Originality (30%), Functionality & Technical Implementation (25%), UI/UX (25%), Presentation & Q&A (20%).","General rules: Teams must report at least 15 minutes before their slot; exceeding time limit leads to negative marking; offensive or copyrighted content leads to disqualification.","Awards: Prizes and certificates for top-performing apps; participation certificates for all eligible teams.","Judges’ decision will be final and binding."]},
+      {name:"Cube Testing",category:"Civil",prize:{first:6000,second:3000,third:1000,total:10000},entryFee:"400",team:"2",about:"Concrete cube test.",rules:["Blocks must be cast using M25 grade mix (cement, sand, and aggregate only).","Dimensions must strictly be 15×15×15 cm with acceptable tolerances.","Blocks must be cured for a minimum of 14 days before testing.","Blocks must be uniform in size, shape, and texture with minimal defects.","Use of admixtures, chemicals, or strength-gainer materials is strictly prohibited.","Participants must share photos with coordinators at the time of casting for verification.","Each team is responsible for proper casting, curing, and transportation of blocks.","Blocks found with cracks, improper curing, or visible defects may be disqualified.","Judging criteria: compressive strength, accuracy of dimensions, and quality of finishing.","Decision of the judges/organizers will be final and binding.","Safety precautions must be followed during casting, curing, and testing."]},
+      {name:"Bridge Making",category:"Civil",prize:{first:6000,second:3000,third:1000,total:10000},entryFee:"400",team:"2",about:"Truss bridge design.",rules:["Only ice-cream (popsicle) sticks are allowed.","Glue (white glue, wood glue) is permitted.", "No tape, string, paper, or metal fasteners unless stated.","Height: 20 cm, Width: 20 cm, Length: 50 cm.","Must be a free-standing structure (cannot be taped to the table).","Must look like a real bridge (truss, arch, beam, or suspension style).","Roadway must be flat.","No sticking to supports during testing."]},
+      {name:"Town Planning",category:"Civil",prize:{first:6000,second:3000,third:1000,total:10000},entryFee:"400",team:"4",about:"Sustainable city layout.",rules:["Eligibility: Open to degree students (Civil/Architecture/Planning).","Team size: 3–4 members.","Entry Fee: ₹400/- per team.","Base map/drawing sheet will be provided.","Focus on sustainability, innovation, and practicality.","Use of drawing instruments, scales, and colors allowed.","Digital/AutoCAD submissions may be accepted with prior approval.","Time limit: 3 hours for planning.","Plan must include zoning of residential, commercial, transport, recreation etc.","Teams must explain concept in 5 minutes.","Direct copying of existing city plans will lead to disqualification.","Judging: Creativity 30%, Feasibility 30%, Sustainability 20%, Presentation 20%.","Decision of judges/organizers will be final."]},
+      {name:"Power Point Presentation",category:"Civil",prize:{first:4000,second:2000,third:1000,total:7000},entryFee:"300",team:"1–2",about:"Research/tech presentation.",rules:["Topics: Sustainable Construction, Water Crisis Solutions, Waste Disposal.","Team size: Maximum 2 participants.","Entry Fee: ₹200/- per team.","Each team gets 8 minutes for presentation and 2 minutes for Q&A.","No language barrier – English, Hindi, or Marathi allowed.","Plagiarism or copied content will result in disqualification.","PPT/PDF format only; max 15 slides.","Presentations must be brought on pen drive or emailed beforehand.","Participants must report at least 15 minutes before start.","Judging: Content Quality 40%, Presentation Skills 30%, Technical Knowledge 20%, Q&A 10%.","Judges’ decision will be final and binding."]},
+      {name:"Structural Photography",category:"Civil",prize:{first:2500,second:1200,third:800,total:4500},entryFee:"200",team:"Solo",about:"Capture structures.",rules:["Solo only","Original clicks only","Edits not allowed",]},
+      {name:"Mobile Photography",category:"Open",prize:{first:1500,second:1000,third:700,total:3200},entryFee:"100",team:"Solo",about:"Shoot on theme.",rules:["Solo only","Theme given on spot","Mobile photos only","Judging on creativity"]},
+      {name:"PC Assembly",category:"Open",prize:{first:1500,second:1000,third:1000,total:3500},entryFee:"100",team:"1–2",about:"PC build challenge.",rules:["Participants must report 15 minutes before event with valid college ID.","Each participant will be given a PC hardware set to identify, assemble, and configure within 1 hour.","All components must be organized, identified, and correctly placed in designated slots (motherboard, RAM, CPU, storage, PSU, cables).","Proper screwing, cabling, and connections must be ensured.","No external help, references, or internet use is allowed during the event.","Handle components carefully; damage, mishandling, or exchange of parts will lead to disqualification.","Judges may ask basic technical questions related to components during assembly.","Only provided components may be used; no personal hardware/tools allowed unless specified.","Assembly must be completed within the given time limit.","Evaluation: Identification of Components (25%), Correct Placement & Assembly (30%), Cable Management & Neatness (15%), Functionality & Accuracy (20%), Time Efficiency (10%).","Judges’ decision will be final and binding.","Top 3 winners receive prizes and certificates; all finalists get participation certificates."]},
+      {name:"Code Quest",category:"CSE/IT",prize:{first:1500,second:1000,third:700,total:3200},entryFee:"200",team:"3",about:"Treasure-hunt.",rules:["Team size: 2–3 members.","Entry Fee: ₹200 per team.","Duration: 1.5–2 hours.","Multiple rounds with QR codes leading to quizzes and puzzles.","Smartphone with QR scanner and internet required.","Only one phone per team allowed.","Do not tamper with QR codes or share answers.","Unsafe behavior leads to disqualification.","Fair play mandatory – no external help unless allowed.","Time-bound event; late submissions rejected.","Tie-breaker: fastest completion time.","Evaluation: Accuracy 60%, Time 30%, Teamwork 10%.","Judges’ decision is final."]},
+      {name:"Google IT",category:"CSE/IT",prize:{first:1500,second:1000,third:700,total:3200},entryFee:"100",team:"Solo",about:"Prompting Search Mastery.",rules:["Solo participation only.","Entry Fee: ₹100.","Duration: 1 hour.","Event tests Google search and prompting skills.","Round 1: Search-based MCQs.","Round 2: OSINT-style puzzle solving using search queries.","Round 3: Advanced keyword + operator based challenge.","No use of AI tools or external help allowed.","Accuracy and speed are primary evaluation criteria.","Judges’ decision is final."]},
+      {name:"Robo Rally",category:"Open",prize:{first:3000,second:1500,third:1000,total:5500},entryFee:"200",team:"2",about:"Line follower robot race.",rules: ["Robots must be student-built.","Follow track guidelines.","No external assistance during event.","Judges’ decision will be final.","Speed & Accuracy.","Design & Innovation.","Task Completion."]},
+      {name:"Trigger Rush(BGMI)",category:"Gaming",prize:{first:5000,second:3000,third:2000,total:10000},entryFee:"200",team:"4",about:"Esports tournament.",rules:["Team event; 4 members per squad.","If two teams tie on points a TDM match will be conducted as tie-breaker.","No rematch will be given in case of disconnection or high ping.","Use of hacks, glitches, modding, or unfair practices leads to direct disqualification.","No verbal abuse, teaming, or unsportsmanlike behavior allowed.","College will provide Wi-Fi/internet access.","Only mobile players allowed; no emulator/PC.","All squads must follow timings and schedule strictly.","Required maps must be pre-downloaded by participants.","Coordinator’s decision is final and binding.","Matches: 3 Classic maps (Erangel, Miramar, Sanhok).","Points: Rank #1=10, #2=6, #3=5, #4=4, #5=3, #6=2, #7=1, #8=1, Per Kill=+1 point."]}
+      // ... all your other events remain same
+    ];
+
+    const grid=document.getElementById('grid');
+    function money(n){return `₹${n.toLocaleString('en-IN')}`;}
+    function render(){
+      grid.innerHTML=EVENTS.map((e,i)=>`
+        <article class="card">
+          <h3>${e.name}</h3>
+          <p class="desc">${e.about}</p>
+          <div class="meta-row">
+            <div class="meta-item"><label>Total Prize</label><div>${money(e.prize.total)}</div></div>
+            <div class="meta-item"><label>Entry Fee</label><div>${e.entryFee}</div></div>
+          </div>
+          <button class="btn primary" onclick="openModal(${i})">View details</button>
+        </article>`).join('');
+    }
+    render();
+
+    const modal=document.getElementById('modal');
+    const mClose=document.getElementById('m-close');
+    const mTitle=document.getElementById('m-title');
+    const mCat=document.getElementById('m-cat');
+    const mPrize=document.getElementById('m-prize');
+    const mFee=document.getElementById('m-fee');
+    const mTeam=document.getElementById('m-team');
+    const mAbout=document.getElementById('m-about');
+    const mBreak=document.getElementById('m-break');
+    const mRules=document.getElementById('m-rules');
+    const mRegister=document.getElementById('m-register');
+
+    function openModal(i){
+      const e=EVENTS[i];
+      mTitle.textContent=e.name;
+      mCat.textContent=e.category;
+      mPrize.textContent=`${money(e.prize.total)} (1st:${money(e.prize.first)}, 2nd:${money(e.prize.second)}, 3rd:${money(e.prize.third)})`;
+      mFee.textContent=e.entryFee;
+      mTeam.textContent=e.team;
+      mAbout.textContent=e.about;
+      mBreak.innerHTML=`<li>1st Prize: ${money(e.prize.first)}</li><li>2nd Prize: ${money(e.prize.second)}</li><li>3rd Prize: ${money(e.prize.third)}</li>`;
+      mRules.innerHTML=e.rules?e.rules.map(r=>`<li>${r}</li>`).join(''):'<li>No rules provided.</li>';
+      // Always assign register link
+      mRegister.href="https://docs.google.com/forms/d/e/1FAIpQLScoeY0HpNbOWHquFguGpCvYZ-XpwTi6c7R1mGxKAgVjdcpctg/viewform?usp=dialog";
+      modal.showModal();
+    }
+    mClose.onclick=()=>modal.close();
+  </script>
+</body>
+</html>
